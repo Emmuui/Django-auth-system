@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="{% url 'index' %}"><img class="logo" src="{% static 'login/images/Logo_image.png' %}" alt="logo"></a>
+            <nav>
+                <ul class="nav__links">
+                    <li><button><a href="{% url 'login' %}">Log in</a></button></li>
+                    <li><button><a href="#">Registration</a></button></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
