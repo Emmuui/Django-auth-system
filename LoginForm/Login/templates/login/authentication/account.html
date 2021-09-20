@@ -1,0 +1,17 @@
+{% extends "login/base.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+    <form class="transparent" method='post'>
+        {% csrf_token %}
+        <div class="form-inner">
+            <h3>Profile</h3>
+            <br>
+            {% for f in account_form %}
+                <p><label>{{f.label}}</label>{{ f }}</p>
+                {{ f.errors }}
+            <br>
+            {% endfor %}
+            <button type="submit" style="position: relative;left: 50%;transform: translate(-50%, 0);">Change</button>
+        </div>
+    </form>
+{% endblock %}

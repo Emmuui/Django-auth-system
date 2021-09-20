@@ -1,5 +1,5 @@
+{% load static recaptcha3%}
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,22 +8,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
+
+    {% recaptcha_init %}
+    {% recaptcha_ready action_name='homepage' %}
+
 </head>
 <body>
     <div class="container">
-        <header>
+            <header>
             <a href="{% url 'index' %}"><img class="logo" src="{% static 'login/images/Logo_image.png' %}" alt="logo"></a>
             <nav>
                 <ul class="nav__links">
-                    <li><button><a href="{% url 'login' %}">Log in</a></button></li>
-                    <li><button><a href="#">Registration</a></button></li>
+                    {% if request.user.is_authenticated %}
+                        <li><button><a href="{% url 'account' %}">{{ user.username }}</a></button></li>
+                        <li><button><a href="{% url 'logout' %}">Log out</a></button></li>
+                    {% else %}
+                        <li><button><a href="{% url 'login' %}">Log in</a></button></li>
+                        <li><button><a href="{% url 'registration' %}">Registration</a></button></li>
+                    {% endif %}
                 </ul>
             </nav>
         </header>
-        <div id="content">
-            {% block content %}
-            {% endblock %}
-        </div>
+
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 </html>

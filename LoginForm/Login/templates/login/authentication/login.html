@@ -1,0 +1,27 @@
+{% extends "login/base.html" %}
+{% block title %}Log-in{% endblock %}
+{% block content %}
+    <form class="transparent" method='post'>
+        {% csrf_token %}
+        <div class="form-inner">
+            <h3>Log in</h3>
+            <br>
+            {% for f in login_form %}
+                <p><label>{{f.label}}</label>{{ f }}</p>
+            {% if f.help_text %}
+                <small style="color: red;">{{ f.help_text }}</small>
+            {% endif %}
+            {% endfor %}
+
+            {% for f in login_form %}
+                {% for error in f.errors %}
+                    <p style="color:red;">{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+            <br>
+                <button type="submit" style="position: relative;left: 50%;transform: translate(-50%, 0);">Log in</button>
+                <p style="color:white; margin-top:10px; font-size: 10px; text-align:center;"><a style="color: #acafb0; font-size: 10px;" href="{% url 'reset_password' %}">Forgot password?</a></p>
+                <p style="color:white; margin-top:10px; font-size: 10px; text-align:center;"><a style="color: #acafb0; font-size: 10px;" href="{% url 'registration' %}">Press here</a> to registration</p>
+        </div>
+    </form>
+{% endblock %}
