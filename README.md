@@ -1,0 +1,3 @@
+Django auth system
+
+Paste your EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, RECAPTCHA_PUBLIC_KEY, RECAPTCHA_PRIVATE_KEY in settings.py
